@@ -7,6 +7,6 @@ kt_jvm_test(
     deps = [
         "//src/main/org/example:Main",
         "@maven//:junit_junit",
-        "@maven//:com_android_support_appcompat_v7",
+        "@maven//:com_google_android_gms_play_services_recaptcha",
     ],
 )
