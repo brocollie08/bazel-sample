@@ -1,0 +1,12 @@
+load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_test")
+
+kt_jvm_test(
+    name = "tests",
+    srcs = glob(["**/*.kt"]),
+    test_class = "org.example.TestMain",
+    deps = [
+        "//src/main/org/example:Main",
+        "@maven//:junit_junit",
+        "@maven//:com_android_support_appcompat_v7",
+    ],
+)

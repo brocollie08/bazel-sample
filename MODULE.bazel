@@ -1,0 +1,29 @@
+module(
+    name = "null",
+    version = "0.1.0",
+)
+
+bazel_dep(name = "rules_kotlin", version = "2.1.0")
+bazel_dep(name = "rules_jvm_external", version = "6.9")
+# local_path_override(
+#     module_name = "rules_jvm_external",
+#     path = "../rules_jvm_external",
+# )
+bazel_dep(name = "rules_android", version = "0.6.0")
+
+# Set up Maven repositories for dependencies
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.install(
+    name = "maven",
+    artifacts = [
+        "junit:junit:4.13.2",
+        "com.android.support:appcompat-v7:28.0.0",
+        "com.google.android.gms:play-services-recaptcha:17.0.1"
+    ],
+    repositories = [
+        "https://repo1.maven.org/maven2",
+        "https://dl.google.com/dl/android/maven2"
+    ],
+    fetch_sources = True,
+)
+use_repo(maven, "maven")
